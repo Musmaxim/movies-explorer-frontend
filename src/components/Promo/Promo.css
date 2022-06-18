@@ -5,7 +5,7 @@
     align-items: center;
     justify-content:space-between;
     min-height: 590px;
-    background-color: black;
+    background-color: rgba(32, 32, 32, 1);
     background-image: url(../../images/landing-logo.svg);
     background-repeat: no-repeat;
     background-position: 50% 30%;
@@ -60,7 +60,7 @@
     }
 
     .promo__title {
-        max-width: 680px;
+        max-width: 100%;
         font-size: 40px;
         line-height: 50px;
         }
@@ -82,9 +82,11 @@
 @media all and (max-width: 540px) {
     .promo {
         padding: 0 0 30px;
+        background-size: 248px 248px;
     }
 
     .promo__title {
+        width: 300px;
         font-size: 30px;
         line-height: 38px;
         letter-spacing: -0.04em;
@@ -95,7 +97,7 @@
     }
 
     .container-links {
-        margin: 80px 0 0;
+        margin-bottom: -30px;
     }
 
 }

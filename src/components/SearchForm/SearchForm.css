@@ -106,12 +106,8 @@
     border-radius: 50%;
 }
 
-.checkbox__input:checked + .checkbox__slider {
-    background-color: rgba(32, 32, 32, 1);
-}
-
 .checkbox__input:checked + .checkbox__slider:before {
-    transform: translateX(20px);
+    transform: translateX(15px);
     background-color: #2be080
 }
 

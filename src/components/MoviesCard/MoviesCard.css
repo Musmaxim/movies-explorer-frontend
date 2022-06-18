@@ -22,7 +22,20 @@
 }
 
 .card__button_type_delete {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-end: 4;
     background-image: url(../../images/delete.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    margin-left: 40px;
+    margin-top: 15px;
+    width: 100px;
+    height: 29px;
+    border-radius: 35px;
+    background-color: #2F2F2F;
 }
 
 .card__button {
@@ -87,11 +100,26 @@
         width: 342px;
         height: 309px;
     }
+    .card__time {
+        margin-top: 20px;
+        margin-left:20px;
+    }
+    .card__button {
+        margin-left: 15px;
+        margin-top: 15px;
+    }
 }
 
 @media screen and (max-width: 800px) {
     .card {
-        width: 300px;
+        width: 280px;
         height: 271px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .card {
+        width: 250px;
+        height: 250px;
     }
 }

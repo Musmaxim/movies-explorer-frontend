@@ -1,12 +1,14 @@
 
 .card-list__container {
     background-color: rgba(32, 32, 32, 1);
-    padding-left: 70px;
-    padding-right: 70px;
     padding-top: 70px;
+    padding-left: 50px;
+    padding-right: 50px;
     display: grid;
     gap: 30px;
     grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
+    align-items: center;
 }
 
 .card-list__more {
@@ -19,13 +21,9 @@
 }
 
 .card-list__more-button {
-    font-family: "Inter", sans-serif;
-    color: white;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 15px;
-    text-align: center;
+    background-image: url(../../images/more.svg);
+    background-position: center;
+    background-repeat: no-repeat;
     height: 36px;
     width: 320px;
     border: 1px solid rgba(47, 47, 47, 1);
@@ -41,27 +39,25 @@
 
 @media (max-width: 1270px) {
     .card-list__container {
-        padding-left: 120px;
         grid-template-columns: 1fr 1fr;
         gap: 30px;
+        padding-left: 30px;
+        padding-right: 30px;
     }
 }
 
 @media (max-width: 1000px) {
     .card-list__container {
-        padding-left: 50px;
-        padding-right: 50px;
         grid-template-columns: 1fr 1fr;
-        gap: 30px;
+        gap: 20px;
     }
 }
 
 @media (max-width: 600px) {
     .card-list__container {
         padding-top: 40px;
-        padding-left: 10px;
-        padding-right: 10px;
         grid-template-columns: 300px;
+        gap: 10px;
         justify-content: center;
         
     }
@@ -69,5 +65,15 @@
     .card-list__more-button {
         height: 36px;
         width: 240px;
+    }
+}
+
+@media (max-width: 320px) {
+    .card-list__container {
+        padding-top: 40px;
+        grid-template-columns: 300px;
+        gap: 10px;
+        justify-content: center;
+        
     }
 }

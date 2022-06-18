@@ -8,7 +8,7 @@ function MoviesCard () {
     let location = useLocation();
     const isSaved = location.pathname === "/saved-movies";
 
-    const headerThemeClassName = `${isSaved ? "card__button card__button_type_delete" : " card__button"}`;
+    const headerThemeClassName = `${isSaved ? "card__button_type_delete" : " card__button"}`;
 
     return (
         <div className="card">

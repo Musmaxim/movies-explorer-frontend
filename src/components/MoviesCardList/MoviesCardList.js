@@ -1,8 +1,14 @@
 import React from "react";
 import './MoviesCardList.css'
 import MoviesCard from "../MoviesCard/MoviesCard";
+import ButtonMore from "../ButtonMore/ButtonMore";
+import { useLocation } from "react-router-dom";
 
 function MoviesCardList () {
+
+    let location = useLocation();
+    const isSaved = location.pathname === "/saved-movies";
+
     return (
         <div className="card-list">
         <div className="card-list__container">
@@ -13,9 +19,7 @@ function MoviesCardList () {
             <MoviesCard />
             <MoviesCard />
         </div>
-        <div className="card-list__more">
-            <button className="card-list__more-button">Ещё</button>
-        </div>
+        {isSaved ? '' : <ButtonMore />}
         </div>
         )
 }
