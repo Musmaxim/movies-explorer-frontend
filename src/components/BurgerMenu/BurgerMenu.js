@@ -2,7 +2,6 @@ import React from "react";
 import './BurgerMenu.css'
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
-import Account from "../../images/akk-logo.svg";
 
 function BurgerMenu() {
 
