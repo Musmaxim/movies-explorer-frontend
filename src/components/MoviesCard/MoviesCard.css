@@ -1,0 +1,125 @@
+.card {
+    display: grid;
+    width: 360px;
+    height: 319px;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 1fr 2fr 1fr;
+    background-color: rgba(34, 34, 34, 1);
+}
+
+.card__pic {
+    width: 100%;
+    grid-column-start: 1;
+    grid-column-end: 4;
+}
+
+.card__text-container {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    width: 100%;
+    align-items: center;
+    padding-bottom: 13px;
+}
+
+.card__button_type_delete {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-end: 4;
+    background-image: url(../../images/delete.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    margin-left: 40px;
+    margin-top: 15px;
+    width: 100px;
+    height: 29px;
+    border-radius: 35px;
+    background-color: #2F2F2F;
+}
+
+.card__button {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-end: 4;
+    background-image: url(../../images/notsaved.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    margin-left: 40px;
+    margin-top: 15px;
+    width: 100px;
+    height: 29px;
+    border-radius: 35px;
+    background-color: #2F2F2F;
+}
+
+.card__button:focus {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-end: 4;
+    background-image: url(../../images/saved.svg);
+    background-color: rgba(238, 52, 101, 1);
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-left: 40px;
+    margin-top: 15px;
+    width: 100px;
+    height: 29px;
+    border-radius: 35px;
+}
+
+.card__text {
+    max-width: 226px;
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 16px;
+    color: white;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.card__time {
+    grid-column-start: 3;
+    grid-column-end: 3;
+    margin-top: 20px;
+    margin-left:40px;
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 13px;
+    color: #a0a0a0;
+}
+
+@media screen and (max-width: 1023px) {
+    .card {
+        width: 342px;
+        height: 309px;
+    }
+    .card__time {
+        margin-top: 20px;
+        margin-left:20px;
+    }
+    .card__button {
+        margin-left: 15px;
+        margin-top: 15px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .card {
+        width: 280px;
+        height: 271px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .card {
+        width: 250px;
+        height: 250px;
+    }
+}
