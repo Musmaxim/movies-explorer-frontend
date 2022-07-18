@@ -21,13 +21,13 @@
     border: none;
     background-color: transparent;
     position: absolute;
-    top: 7px;
-    right: 6px;
+    top: 6px;
+    right: 20px;
 }
 
 .search__button:hover {
     cursor: pointer;
-    opacity: 0.6;
+    opacity: 0.9;
 }
 
 .search__input {
@@ -36,6 +36,7 @@
     width: calc(100% - 22px);
     height: 46px;
     border: none;
+    margin-left: 10px;
     color: white;
     font-family: "Inter", sans-serif;
     font-style: normal;
@@ -55,9 +56,10 @@
     line-height: 17px;
 }
 
-.search__input:active {
+/* .search__input:active {
     outline: #3456f3;
-}
+    color: #f10e0e;
+} */
 
 .checkbox {
     display: flex;

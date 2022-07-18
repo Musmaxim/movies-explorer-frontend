@@ -33,8 +33,7 @@
 
 .card-list__more-button:hover {
     cursor: pointer;
-    opacity: 0.4;
-    transition: opacity ease-out 1s;
+    opacity: 0.7;
 }
 
 @media (max-width: 1270px) {

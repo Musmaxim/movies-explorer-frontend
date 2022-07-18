@@ -1,12 +1,12 @@
 import './ErrorScreen.css'
-import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 function ErrorScreen () {
 
-    const navigate = useNavigate();
+    const history = useHistory();
 
     function goBack () {
-            return navigate(-1);
+            return history(-1);
         }
 
     return (
