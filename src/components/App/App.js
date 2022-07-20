@@ -3,11 +3,11 @@ import "./App.css";
 import "../../index.css";
 import React, { useState, useEffect } from "react";
 import {
-    Route,
-    Switch,
-    Redirect,
-    useLocation,
-    useHistory,
+  Route,
+  Switch,
+  Redirect,
+  useLocation,
+  useHistory,
 } from "react-router-dom";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
@@ -18,102 +18,102 @@ import ErrorScreen from "../ErrorScreen/ErrorScreen";
 import Movies from "../Movies/Movies";
 import SavedMovies from "../SavedMovies/SavedMovies";
 import Footer from "../Footer/Footer";
-import getInitialMovies from "../Utils/MoviesApi";
-import mainApi from "../Utils/MainApi";
-import findMovie from "../Utils/FindMovie";
-import ProtectedRoute from "../Utils/ProtectedRoute";
-import * as auth from "../Utils/auth.js";
+import getInitialMovies from "../../utils/MoviesApi";
+import mainApi from "../../utils/MainApi";
+import findMovie from "../../utils/FindMovie";
+import ProtectedRoute from "../../utils/ProtectedRoute";
+import * as auth from "../../utils/auth.js";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function App() {
-    const [movies, setMovies] = useState([]);
-    const [savedMovies, setSavedMovies] = useState([]);
-    const [isPreloaderOpen, setIsPreloaderOpen] = useState(false);
-    const [isErrorOpen, setIsErrorOpen] = useState(false);
-    const [shortOn, setShortOn] = useState(false);
-    const [notFound, setNotFound] = useState(false);
-    const [loggedIn, setLoggedIn] = useState(
-    localStorage.getItem('token') ? true : false
-);
-    const [currentUser, setCurrentUser] = useState({});
-    const [searchInput, setSearchInput] = useState(
-    localStorage.getItem('input') || ""
-);
-    const history = useHistory();
+  const [movies, setMovies] = useState([]);
+  const [savedMovies, setSavedMovies] = useState([]);
+  const [isPreloaderOpen, setIsPreloaderOpen] = useState(false);
+  const [isErrorOpen, setIsErrorOpen] = useState(false);
+  const [shortOn, setShortOn] = useState(false);
+  const [notFound, setNotFound] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(
+    localStorage.getItem("token") ? true : false
+  );
+  const [currentUser, setCurrentUser] = useState({});
+  const [searchInput, setSearchInput] = useState(
+    localStorage.getItem("input") || ""
+  );
+  const history = useHistory();
 
-useEffect(() => {
+  useEffect(() => {
     if (loggedIn) {
-        mainApi
+      mainApi
         .getUser()
         .then((data) => {
-            setCurrentUser(data.user);
+          setCurrentUser(data.user);
         })
         .catch((err) => console.log(err));
     }
-}, []);
+  }, []);
 
-function handleGetUser() {
+  function handleGetUser() {
     mainApi
-        .getUser()
-        .then((data) => {
+      .getUser()
+      .then((data) => {
         setCurrentUser(data.user);
-    })
-        .catch((err) => console.log(err));
-}
+      })
+      .catch((err) => console.log(err));
+  }
 
-function handleUpdateUser({ email, name }) {
+  function handleUpdateUser({ email, name }) {
     mainApi
-        .updateUserInfo({ email, name })
-        .then((user) => {
+      .updateUserInfo({ email, name })
+      .then((user) => {
         setCurrentUser(user);
-        })
-    .catch((err) => console.log(err));
-}
+      })
+      .catch((err) => console.log(err));
+  }
 
-useEffect(() => {
-    setMovies(JSON.parse(localStorage.getItem('movies')) || movies);
-    setShortOn(JSON.parse(localStorage.getItem('short')) || false);
-}, []);
+  useEffect(() => {
+    setMovies(JSON.parse(localStorage.getItem("movies")) || movies);
+    setShortOn(JSON.parse(localStorage.getItem("short")) || false);
+  }, []);
 
-function handleGetAllMovies(name) {
+  function handleGetAllMovies(name) {
     setIsPreloaderOpen(true);
     setNotFound(false);
     getInitialMovies()
-        .then((movies) => {
+      .then((movies) => {
         let filteredMovies = findMovie(movies, name);
         setMovies(filteredMovies);
         filteredMovies.length === 0 && setNotFound(true);
-        localStorage.setItem('movies', JSON.stringify(filteredMovies));
-        localStorage.setItem('input', name);
-    })
-        .catch((err) => {
+        localStorage.setItem("movies", JSON.stringify(filteredMovies));
+        localStorage.setItem("input", name);
+      })
+      .catch((err) => {
         console.log(err);
         setIsErrorOpen(true);
-    })
-        .finally(() => setIsPreloaderOpen(false));
-}
+      })
+      .finally(() => setIsPreloaderOpen(false));
+  }
 
-useEffect(() => {
+  useEffect(() => {
     if (loggedIn) {
-        mainApi
+      mainApi
         .getMovies()
         .then((savedMovies) => {
-            const currentUserMovies = savedMovies.filter(
+          const currentUserMovies = savedMovies.filter(
             (movie) => movie.owner === currentUser._id
-        );
-            localStorage.setItem(
-            'savedMovies',
+          );
+          localStorage.setItem(
+            "savedMovies",
             JSON.stringify(currentUserMovies)
-        );
-            setSavedMovies(currentUserMovies);
+          );
+          setSavedMovies(currentUserMovies);
         })
         .catch((err) => console.log(err));
     }
-}, [currentUser._id]);
+  }, [currentUser._id]);
 
-function handleSaveMovie(movie) {
+  function handleSaveMovie(movie) {
     mainApi
-        .addMovie({
+      .addMovie({
         movieId: movie.id,
         country: movie.country,
         director: movie.director,
@@ -125,80 +125,80 @@ function handleSaveMovie(movie) {
         nameRU: movie.nameRU,
         nameEN: movie.nameEN,
         thumbnail: `https://api.nomoreparties.co${movie.image.formats.thumbnail.url}`,
-    })
-        .then((movie) => {
+      })
+      .then((movie) => {
         setSavedMovies([...savedMovies, movie]);
-    })
-        .catch((err) => console.log(err));
-}
+      })
+      .catch((err) => console.log(err));
+  }
 
-function handleDeleteMovie(deletedMovie) {
+  function handleDeleteMovie(deletedMovie) {
     mainApi
-        .deleteMovie(deletedMovie._id)
-        .then(() => {
+      .deleteMovie(deletedMovie._id)
+      .then(() => {
         setSavedMovies((movies) =>
-            movies.filter((movie) => movie._id !== deletedMovie._id)
+          movies.filter((movie) => movie._id !== deletedMovie._id)
         );
         console.log("Карточка удалена");
-    })
-        .catch((err) => console.log(err));
-}
+      })
+      .catch((err) => console.log(err));
+  }
 
-function registration(name, email, password) {
+  function registration(name, email, password) {
     auth
-        .register(name, email, password)
-        .then(() => authorization(email, password))
-        .catch((err) => console.log(err));
-}
+      .register(name, email, password)
+      .then(() => authorization(email, password))
+      .catch((err) => console.log(err));
+  }
 
-function authorization(email, password) {
+  function authorization(email, password) {
     auth
-        .authorize(email, password)
-        .then((data) => {
+      .authorize(email, password)
+      .then((data) => {
         if (data.token) {
-            setLoggedIn(true);
-            localStorage.setItem('token', data.token);
-            history.push("/movies");
-            handleGetUser();
+          setLoggedIn(true);
+          localStorage.setItem("token", data.token);
+          history.push("/movies");
+          handleGetUser();
         }
-    })
-        .catch((err) => console.log(err));
-}
+      })
+      .catch((err) => console.log(err));
+  }
 
-function signOut() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('input');
-    localStorage.removeItem('movies');
-    localStorage.removeItem('short');
+  function signOut() {
+    localStorage.removeItem("token");
+    localStorage.removeItem("input");
+    localStorage.removeItem("movies");
+    localStorage.removeItem("short");
     setLoggedIn(false);
     history.push("/");
     setSearchInput("");
     setMovies([]);
-}
+  }
 
-let location = useLocation();
+  let location = useLocation();
 
-const isHeaderVisible = () => {
+  const isHeaderVisible = () => {
     const locations = ["/", "/saved-movies", "/movies", "/profile"];
     return locations.includes(location.pathname);
-};
+  };
 
-const isFooterVisible = () => {
+  const isFooterVisible = () => {
     const locations = ["/", "/saved-movies", "/movies"];
     return locations.includes(location.pathname);
-};
+  };
 
-    return (
+  return (
     <>
-        <CurrentUserContext.Provider value={currentUser}>
+      <CurrentUserContext.Provider value={currentUser}>
         <div className="Body">
-            <div className="App">
+          <div className="App">
             {isHeaderVisible() && <Header loggedIn={loggedIn} />}
             <Switch>
-                <Route exact path="/">
+              <Route exact path="/">
                 <Main />
-                </Route>
-                <ProtectedRoute
+              </Route>
+              <ProtectedRoute
                 path="/movies"
                 loggedIn={loggedIn}
                 component={Movies}
@@ -214,9 +214,9 @@ const isFooterVisible = () => {
                 savedMovies={savedMovies}
                 searchInput={searchInput}
                 setSearchInput={setSearchInput}
-                />
+              />
 
-                <ProtectedRoute
+              <ProtectedRoute
                 path="/saved-movies"
                 component={SavedMovies}
                 loggedIn={loggedIn}
@@ -229,42 +229,42 @@ const isFooterVisible = () => {
                 setShortOn={setShortOn}
                 searchInput={searchInput}
                 setSearchInput={setSearchInput}
-                />
+              />
 
-                <ProtectedRoute
+              <ProtectedRoute
                 path="/profile"
                 component={Profile}
                 loggedIn={loggedIn}
                 signOut={signOut}
                 onUpdateUser={handleUpdateUser}
-                />
+              />
 
-                <Route path="/signup">
+              <Route path="/signup">
                 {loggedIn ? (
-                    <Redirect to="/" />
+                  <Redirect to="/" />
                 ) : (
-                    <Register registration={registration} />
+                  <Register registration={registration} />
                 )}
-                </Route>
+              </Route>
 
-                <Route path="/signin">
+              <Route path="/signin">
                 {loggedIn ? (
-                    <Redirect to="/" />
+                  <Redirect to="/" />
                 ) : (
-                    <Login authorization={authorization} />
+                  <Login authorization={authorization} />
                 )}
-                </Route>
+              </Route>
 
-                <Route path="*">
+              <Route path="*">
                 <ErrorScreen />
-                </Route>
+              </Route>
             </Switch>
             {isFooterVisible() && <Footer />}
-            </div>
+          </div>
         </div>
-        </CurrentUserContext.Provider>
+      </CurrentUserContext.Provider>
     </>
-    );
+  );
 }
 
 export default App;
