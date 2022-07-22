@@ -1,3 +1,5 @@
 export default function findMovie(movies, name) {
-    return [...movies].filter(movie => (movie.nameRU.toLowerCase().includes(name.toLowerCase())));
-  }
+  return [...movies].filter((movie) =>
+    movie.nameRU.toLowerCase().includes(name.toLowerCase())
+  );
+}

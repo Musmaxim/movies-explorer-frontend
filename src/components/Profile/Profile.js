@@ -25,8 +25,8 @@ function Profile(props) {
   function handleSubmit(e) {
     e.preventDefault();
     props.onUpdateUser({
-      email: values.email,
-      name: values.name,
+      email: values.email  || currentUser.email,
+      name: values.name  || currentUser.name
     });
   }
 

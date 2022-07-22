@@ -47,9 +47,10 @@ function Register(props) {
         <input
           className="form__item-input"
           type="email"
+          placeholder="name@site.ru"
           value={values.email || ""}
           onChange={handleChange}
-          pattern="\w+[@][a-zA-Z]+\.[a-zA-Z]+"
+          pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
           id="email-input"
           name="email"
           required

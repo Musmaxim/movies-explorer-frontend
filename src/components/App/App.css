@@ -1,19 +1,23 @@
 .app {
-    max-width: 1280px;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
-    }
+  max-width: 1280px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
 
 input[type="search"]::-webkit-search-decoration,
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-results-button,
-input[type="search"]::-webkit-search-results-decoration { display: none; }
+input[type="search"]::-webkit-search-results-decoration {
+  display: none;
+}
 
-input {outline: none;}
+input {
+  outline: none;
+}
 input:-webkit-autofill {
-    -webkit-box-shadow: inset 0 0 0 50px #2F2F2F !important; /* Цвет фона */
-    -webkit-text-fill-color: rgb(255, 255, 255) !important; /* цвет текста */
-    color: #999 !important; /* цвет текста */
+  -webkit-box-shadow: inset 0 0 0 50px #2f2f2f !important; /* Цвет фона */
+  -webkit-text-fill-color: rgb(255, 255, 255) !important; /* цвет текста */
+  color: #999 !important; /* цвет текста */
 }
